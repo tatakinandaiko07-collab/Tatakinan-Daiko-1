@@ -1,0 +1,110 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: users
+    // Document ID: userId (Auth UID)
+    // Fields:
+    //   - uid: string (required)
+    //   - displayName: string (optional)
+    //   - email: string (required)
+    //   - role: string (required, 'admin' | 'student')
+    //   - status: string (required, 'pending' | 'approved')
+    //   - createdAt: timestamp (required)
+    //
+    // Collection: materials
+    // Document ID: auto-generated
+    // Fields:
+    //   - title: string (required, < 100 chars)
+    //   - type: string (required, 'score' | 'video')
+    //   - url: string (required, valid URL)
+    //   - description: string (optional, < 500 chars)
+    //   - createdAt: timestamp (required)
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+         (request.auth.token.email == "tatakinan.daiko07@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function isApproved() {
+      return isAuthenticated() &&
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.status == 'approved' || isAdmin());
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['uid', 'email', 'role', 'status', 'createdAt']) &&
+             data.uid == request.auth.uid &&
+             data.email is string &&
+             data.role in ['admin', 'student'] &&
+             data.status in ['pending', 'approved'] &&
+             data.createdAt is timestamp;
+    }
+
+    function isValidMaterial(data) {
+      return data.keys().hasAll(['title', 'type', 'url', 'createdAt']) &&
+             data.title is string && data.title.size() < 100 &&
+             data.type in ['score', 'video'] &&
+             data.url is string && data.url.matches("^https?://.*") &&
+             (!('description' in data) || (data.description is string && data.description.size() < 500)) &&
+             data.createdAt is timestamp;
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+
+    match /users/{userId} {
+      // Users can read their own profile. Admins can read all.
+      allow read: if isOwner(userId) || isAdmin();
+      
+      // New users can create their own profile as 'pending' students.
+      // Admins can create any profile.
+      allow create: if (isOwner(userId) && 
+                        isValidUser(request.resource.data) && 
+                        request.resource.data.role == 'student' && 
+                        request.resource.data.status == 'pending') || 
+                       isAdmin();
+      
+      // Users can update their own non-sensitive info (displayName).
+      // Admins can update everything (role, status).
+      allow update: if (isOwner(userId) && 
+                        isValidUser(request.resource.data) && 
+                        request.resource.data.role == resource.data.role && 
+                        request.resource.data.status == resource.data.status) || 
+                       isAdmin();
+      
+      allow delete: if isAdmin();
+    }
+
+    match /materials/{materialId} {
+      // Only approved students and admins can read materials.
+      allow read: if isApproved();
+      
+      // Only admins can write materials.
+      allow write: if isAdmin();
+    }
+
+    // Default deny
+    match /{path=**} {
+      allow read, write: if false;
+    }
+  }
+}

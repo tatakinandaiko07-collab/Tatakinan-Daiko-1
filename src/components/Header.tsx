@@ -18,6 +18,9 @@ const Header = () => {
     { name: "Início", href: "/" },
     { name: "Agenda", href: "/agenda" },
     { name: "Taiko", href: "/taiko" },
+    { name: "Membros", href: "/membros" },
+    { name: "Galeria", href: "/galeria" },
+    { name: "Loja", href: "/loja" },
     { name: "Contato", href: "/contato" },
   ];
 
@@ -28,9 +31,14 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 bg-brand rounded-full flex items-center justify-center font-display font-bold text-xl italic group-hover:scale-110 transition-transform">T</div>
-          <span className="text-xl font-display font-bold tracking-tighter uppercase hidden sm:block">
+        <Link to="/" className="flex items-center gap-3 group">
+          <img 
+            src="https://lh3.googleusercontent.com/d/1WIGmBGUhPa-KRb8rCQLuc0Yp8XfSByrU" 
+            alt="Tatakinan Daiko Logo" 
+            className="w-12 h-12 object-contain group-hover:scale-110 transition-transform"
+            referrerPolicy="no-referrer"
+          />
+          <span className="text-xl font-display font-medium tracking-tighter uppercase hidden sm:block">
             Tatakinan <span className="text-brand">Daiko</span>
           </span>
         </Link>
@@ -49,7 +57,7 @@ const Header = () => {
             </Link>
           ))}
           <a 
-            href="https://instagram.com" 
+            href="https://www.instagram.com/tatakinan_daiko/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="bg-brand hover:bg-brand-dark text-white p-2 rounded-full transition-all hover:scale-110"

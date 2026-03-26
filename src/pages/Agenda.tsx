@@ -3,12 +3,7 @@ import { MapPin, Calendar as CalendarIcon, ChevronRight } from "lucide-react";
 
 const Agenda = () => {
   const events = [
-    { date: "12 Abr", title: "Festival do Japão", location: "São Paulo, SP", time: "14:00" },
-    { date: "25 Abr", title: "Apresentação Cultural", location: "Curitiba, PR", time: "19:30" },
-    { date: "10 Mai", title: "Workshop de Taiko", location: "Sede Tatakinan", time: "09:00" },
-    { date: "22 Mai", title: "Evento Corporativo", location: "Campinas, SP", time: "20:00" },
-    { date: "05 Jun", title: "Show de Inverno", location: "Campos do Jordão, SP", time: "18:00" },
-    { date: "18 Jun", title: "Semana da Cultura Japonesa", location: "Londrina, PR", time: "15:30" },
+    { date: "26 Abr", title: "Nerdeste Day", location: "Campina Grande, PB", time: "12:00" },
   ];
 
   return (
@@ -16,7 +11,7 @@ const Agenda = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-brand font-display italic text-xl mb-2">Próximas Apresentações</h2>
-          <h1 className="text-4xl md:text-6xl font-display font-bold uppercase">Nossa Agenda</h1>
+          <h1 className="text-4xl md:text-6xl font-display font-medium uppercase">Nossa Agenda</h1>
           <div className="w-24 h-1 bg-brand mx-auto mt-6"></div>
         </div>
 

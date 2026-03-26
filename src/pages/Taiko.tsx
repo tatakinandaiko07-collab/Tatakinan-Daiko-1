@@ -7,7 +7,7 @@ const Taiko = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-brand font-display italic text-xl mb-2">A Arte dos Tambores</h2>
-          <h1 className="text-4xl md:text-6xl font-display font-bold uppercase">O Taiko</h1>
+          <h1 className="text-4xl md:text-6xl font-display font-medium uppercase">O Taiko</h1>
           <div className="w-24 h-1 bg-brand mx-auto mt-6"></div>
         </div>
 
@@ -20,7 +20,7 @@ const Taiko = () => {
           >
             <div className="aspect-square rounded-3xl overflow-hidden border-4 border-brand/20">
               <img 
-                src="https://images.unsplash.com/photo-1594122230689-45899d9e6f69?q=80&w=800&auto=format&fit=crop" 
+                src="https://lh3.googleusercontent.com/d/1BO9rMtEChzEAtUtHUBBSFpJp2DtBekix" 
                 alt="Taiko Drums" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
@@ -33,13 +33,22 @@ const Taiko = () => {
 
           <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
             <p>
-              O Taiko (太鼓) é muito mais que um instrumento musical; é uma expressão de força, disciplina e união. Originário do Japão, suas batidas eram usadas em campos de batalha, rituais religiosos e festivais.
+              De acordo com historiadores, o taiko é um instrumento de percussão tradicional do Japão com mais de 2.500 anos de história. Desde seus primórdios, ele esteve profundamente ligado à vida social, religiosa e militar do povo japonês.
             </p>
             <p>
-              No <span className="text-white font-bold">Tatakinan Daiko</span>, buscamos preservar essa tradição enquanto exploramos novas sonoridades, trazendo a energia vibrante dos tambores para o contexto brasileiro.
+              Durante o período bélico, líderes militares passaram a utilizar o jindaiko, o tambor de guerra, como forma de transmitir comandos ao exército e também para fortalecer o ânimo dos soldados por meio de batidas fortes e marcantes. Ao mesmo tempo, o taiko ocupava um papel importante em cerimônias e festividades religiosas.
             </p>
             <p>
-              Cada batida é um reflexo do espírito do tocador, exigindo não apenas técnica musical, mas também preparo físico e mental.
+              Acreditava-se que, após rituais de abstinência e purificação, tocar o taiko com a alma permitiria invocar os deuses para atender aos desejos humanos. Dessa forma, o instrumento era visto como um elo entre o mundo divino e o mundo dos homens. Algumas tradições religiosas, inclusive, consideravam o taiko como a morada dos deuses e das almas dos antepassados, o que reforçava seu caráter sagrado e sua grande importância simbólica.
+            </p>
+            <p>
+              Com o passar do tempo, o uso do taiko deixou de ser restrito ao clero e à aristocracia e passou a se espalhar gradualmente pela sociedade japonesa. Inicialmente, as apresentações eram realizadas por poucas pessoas, mas esse formato mudou após a Segunda Guerra Mundial, quando surgiu o sistema múltiplo conhecido como kumidaiko. A partir desse momento, desenvolveram-se as apresentações coletivas com muitos tocadores e diferentes tipos de tambores, semelhantes às que conhecemos hoje.
+            </p>
+            <p>
+              A prática do taiko proporciona diversos benefícios, como a melhora do condicionamento físico, o aumento da coordenação motora e o desenvolvimento de valores como disciplina, respeito, cooperação e esforço coletivo. Além disso, contribui para o crescimento intelectual do praticante, que passa a ter contato com a teoria musical, a cultura japonesa e até mesmo com o idioma.
+            </p>
+            <p>
+              Atualmente, o taiko é uma expressão cultural que vem conquistando praticantes em todo o mundo. Presente em mais de 47 países, essa arte pode ser praticada por pessoas de todas as idades, e o número de adeptos continua crescendo a cada ano.
             </p>
           </div>
         </div>

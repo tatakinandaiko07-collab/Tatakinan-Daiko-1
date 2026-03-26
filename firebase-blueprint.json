@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the application, either an admin or a student.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The unique Firebase Auth UID." },
+        "displayName": { "type": "string", "description": "The user's display name." },
+        "email": { "type": "string", "format": "email", "description": "The user's email address." },
+        "role": { "type": "string", "enum": ["admin", "student"], "description": "The user's role." },
+        "status": { "type": "string", "enum": ["pending", "approved"], "description": "The user's approval status." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the user was created." }
+      },
+      "required": ["uid", "email", "role", "status", "createdAt"]
+    },
+    "Material": {
+      "title": "Material",
+      "description": "Study material like scores or practice videos.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "The title of the material." },
+        "type": { "type": "string", "enum": ["score", "video"], "description": "The type of material." },
+        "url": { "type": "string", "format": "uri", "description": "The URL to the file or video." },
+        "description": { "type": "string", "description": "A brief description." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the material was added." }
+      },
+      "required": ["title", "type", "url", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Collection of user profiles."
+    },
+    "/materials/{materialId}": {
+      "schema": "Material",
+      "description": "Collection of study materials."
+    }
+  }
+}
